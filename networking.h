@@ -8,6 +8,10 @@
 #include <errno.h>
 #include <time.h>
 #include <signal.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netdb.h>
+#include <ctype.h>
 
 #ifndef NETWORKING_H
 #define NETWORKING_H
@@ -18,12 +22,10 @@
 #define BUFFER_SIZE 1000
 
 
-//for forking server
-int server_setup();
-int server_connect(int from_client);
-
-
-int server_handshake(int *to_client);
-int client_handshake(int *to_server);
+int server_connect();
+void upper(int client_socket);
+void listen_socket(int sd);
+void server_handshake(int sd);
+int client_handshake();
 
 #endif
